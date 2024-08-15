@@ -1,0 +1,31 @@
+name: Deploy
+
+on:
+  push:
+    branches: ["main", "chore/deploy"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: "1.21.4"
+      - name: Run tests
+        run: go test -v ./...
+      - name: Build
+        run: |
+          GOOS=darwin GOARCH=amd64 go build -v -o macos
+          GOOS=linux GOARCH=amd64 go build -v -o linux
+          GOOS=windows GOARCH=amd64 go build -v -o windows
+      - name: Create release
+        run: |
+          gh release create $tag -t $tag
+          gh release upload $tag ./macos ./linux ./windows
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          tag: "0.0.1"

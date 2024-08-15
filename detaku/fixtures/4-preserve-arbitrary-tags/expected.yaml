@@ -1,0 +1,10 @@
+success:
+  - name: 2005-07-04_12-09-05_city.jpg
+    tags:
+      misc:
+        - name: Title
+          value: city
+        - name: Model
+          value: PDR-3300
+        - name: Software
+          value: PDR-3300 Ver1.06

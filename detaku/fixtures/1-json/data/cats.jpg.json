@@ -1,0 +1,37 @@
+{
+  "title": "IMG_9667.JPG",
+  "description": "",
+  "imageViews": "22",
+  "creationTime": {
+    "timestamp": "1451595836",
+    "formatted": "Dec 31, 2015, 9:03:56 PM UTC"
+  },
+  "photoTakenTime": {
+    "timestamp": "1446939686",
+    "formatted": "Nov 7, 2015, 11:41:26 PM UTC"
+  },
+  "geoData": {
+    "latitude": 40.694694399999996,
+    "longitude": -73.9509972,
+    "altitude": 33.0,
+    "latitudeSpan": 0.0,
+    "longitudeSpan": 0.0
+  },
+  "geoDataExif": {
+    "latitude": 40.694694399999996,
+    "longitude": -73.9509972,
+    "altitude": 33.0,
+    "latitudeSpan": 0.0,
+    "longitudeSpan": 0.0
+  },
+  "url": "https://lh3.googleusercontent.com/-gniDvFG79lefOC1PPtVaibtvD8fNHUWZZOHD0y_eXgdNiKHtrwr0Sj0I9cS1Edgiy6jPITtgEWwudyp4DhCBASsQBG3HPjm50qeai97",
+  "googlePhotosOrigin": {
+    "mobileUpload": {
+      "deviceType": "IOS_PHONE"
+    }
+  },
+  "photoLastModifiedTime": {
+    "timestamp": "1654044407",
+    "formatted": "Jun 1, 2022, 12:46:47 AM UTC"
+  }
+}

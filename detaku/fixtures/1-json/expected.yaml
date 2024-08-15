@@ -1,0 +1,26 @@
+success:
+  - name: 2010-01-06_22-55-27_painting.jpg
+    tags:
+      misc:
+        - name: Title
+          value: painting
+      dates:
+        - name: DateTimeOriginal
+          value: "2010-01-06T22:55:27"
+        - name: CreateDate
+          value: "2010-01-06T22:55:27"
+  - name: 2015-11-07_18-41-26_cats.jpg
+    tags:
+      misc:
+        - name: Title
+          value: cats
+      dates:
+        - name: DateTimeOriginal
+          value: "2015-11-07T18:41:26"
+      geo:
+        - name: GPSLatitude
+          value: 40.694695
+        - name: GPSLongitude
+          value: 73.951
+        - name: GPSAltitude
+          value: 33 m

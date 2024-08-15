@@ -1,0 +1,37 @@
+success:
+  # From earth.mp4.
+  - name: 2001-01-01_01-01-01_earth.mp4
+    tags:
+      misc:
+        - name: Title
+          value: earth
+      dates:
+        - name: CreateDate
+          value: "2001-01-01T01:01:01"
+  # From earth.mov.
+  - name: 2002-02-02_02-02-02_earth.mp4
+    tags:
+      misc:
+        - name: Title
+          value: earth
+      dates:
+        - name: CreateDate
+          value: "2002-02-02T02:02:02"
+  # From earth.wmv.
+  - name: 2004-04-04_04-04-04_earth.mp4
+    tags:
+      misc:
+        - name: Title
+          value: earth
+      dates:
+        - name: CreateDate
+          value: "2004-04-04T04:04:04"
+  # From earth.avi. TODO: Exif tag handling for .avi files are not supported.
+  # - name: 2003-03-03_03-03-03_earth.mp4
+  #   tags:
+  #     misc:
+  #       - name: Title
+  #         value: earth
+  #     dates:
+  #       - name: CreateDate
+  #         value: "2003-03-03T03:03:03"
