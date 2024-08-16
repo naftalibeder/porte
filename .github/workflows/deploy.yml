@@ -1,8 +1,9 @@
 name: Deploy
 
 on:
-  pull_request:
-    branches: ["main"]
+  push:
+    paths:
+      - .version
 
 jobs:
   deploy:
@@ -22,8 +23,8 @@ jobs:
           GOOS=windows GOARCH=amd64 go build -v -o windows
       - name: Create release
         run: |
-          gh release create $tag -t $tag
-          gh release upload $tag ./macos ./linux ./windows
+          TAG=$(cat .version)
+          gh release create $TAG -t $TAG
+          gh release upload $TAG ./macos ./linux ./windows
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          tag: "0.0.1"
