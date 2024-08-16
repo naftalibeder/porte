@@ -28,8 +28,6 @@ func GetLibs() (out string, err error) {
 	libCacheDir = filepath.Join(globalCacheDir, "detaku", "lib")
 	_ = os.MkdirAll(libCacheDir, 0777)
 
-	fmt.Printf("Created library cache directory: %s\n", libCacheDir)
-
 	ExiftoolDir := filepath.Join(libCacheDir, "exiftool")
 	ExiftoolBin = filepath.Join(libCacheDir, "exiftool/exiftool")
 	FfmpegDir := filepath.Join(libCacheDir, "ffmpeg")
