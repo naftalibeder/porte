@@ -4,7 +4,7 @@ success:
       dates:
         - name: CreateDate
           value: "2012-02-06T00:00:00"
-  - name: "1998-12-20_00-00-00_1998_12_20 (Northern Flicker).jpg"
+  - name: "1998-12-20_00-00-00_1998-12-20 (Northern Flicker).jpg"
     tags:
       dates:
         - name: CreateDate
