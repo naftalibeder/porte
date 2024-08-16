@@ -1,4 +1,4 @@
-name: Deploy
+name: Release
 
 on:
   push:
@@ -6,12 +6,11 @@ on:
       - .version
 
 jobs:
-  deploy:
+  release:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up Go
-        uses: actions/setup-go@v4
+      - uses: actions/setup-go@v4
         with:
           go-version: "1.21.4"
       - name: Run tests
