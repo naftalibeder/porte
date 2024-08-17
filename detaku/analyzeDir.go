@@ -107,8 +107,6 @@ func analyzeDir(srcDir string) (AnalyzeDirResult, error) {
 	vidFileInfoMap := types.FileInfoMap{}
 	vidExtCtMap := types.ExtCtMap{}
 	vidTotalDurationSec := 0
-	vidTotalDuration := ""
-	vidsNeedReEncodeCt := 0
 
 	// A lookup table recording the existence of each supplementary json file.
 	// Each file is keyed by its full path.
@@ -128,11 +126,6 @@ func analyzeDir(srcDir string) (AnalyzeDirResult, error) {
 			vidFileInfoMap[result.Path] = result.MediaFileInfo
 			vidExtCtMap[result.Ext]++
 			vidTotalDurationSec += int(result.MediaFileInfo.VidInfo.DurationSec)
-			dur, _ := time.ParseDuration(fmt.Sprintf("%ds", vidTotalDurationSec))
-			vidTotalDuration = dur.String()
-			if result.MediaFileInfo.VidInfo.NeedsReEncode {
-				vidsNeedReEncodeCt++
-			}
 		}
 		supplFileInfoMap[result.Path] = result.SupplFileInfo
 
@@ -150,10 +143,16 @@ func analyzeDir(srcDir string) (AnalyzeDirResult, error) {
 			vidExtsDisp = fmt.Sprintf("(%s)", vidExtsSorted)
 		}
 
+		vidTotalDurationDisp := ""
+		if vidTotalDurationSec > 0 {
+			d, _ := time.ParseDuration(fmt.Sprintf("%ds", vidTotalDurationSec))
+			vidTotalDurationDisp = fmt.Sprintf("(%s)", d)
+		}
+
 		console.Update(console.PhaseAnalyzing, [][]string{
 			{"", fmt.Sprintf("- Analyzed %d/%d files", walkedFileCt, totalFileCt)},
 			{"", fmt.Sprintf("- Images: %d %s", len(imgFileInfoMap), imgExtsDisp)},
-			{"", fmt.Sprintf("- Videos: %d %s (%s, %d need re-encoding)", len(vidFileInfoMap), vidExtsDisp, vidTotalDuration, vidsNeedReEncodeCt)},
+			{"", fmt.Sprintf("- Videos: %d %s %s", len(vidFileInfoMap), vidExtsDisp, vidTotalDurationDisp)},
 			{"", fmt.Sprintf("- Supplementary files: %d", len(supplFileInfoMap))},
 			{"", "- " + console.GetElapsedStr(sectionStart) + " elapsed"},
 		})

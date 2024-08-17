@@ -139,6 +139,8 @@ func convertFile(job ConvertFileJob) (result ConvertFileResult) {
 	if !foundDate {
 		canSaveFile = false
 		logEntry.Errors = append(logEntry.Errors, "No earliest date found in file, supplementary file, or filename")
+	} else {
+		logEntry.UsedDateTag = earliestDateTag
 	}
 
 	// Find all geo tags.
@@ -194,11 +196,11 @@ func convertFile(job ConvertFileJob) (result ConvertFileResult) {
 		tmpPath = tmpPathNext
 	}
 
-	// Normalize a video by copying or re-encoding.
+	// Normalize a video by repackaging or copying.
 
 	tmpPathNext = ""
 	if fileInfo.MediaKind == types.Video {
-		tmpPathNext, err = encode.CopyOrEncodeVideo(fileInfo, tmpPath, tmpWorkingDir, "3")
+		tmpPathNext, err = encode.CopyVideo(fileInfo, tmpPath, tmpWorkingDir, "3")
 		if err != nil {
 			canSaveFile = false
 			logEntry.Errors = append(logEntry.Errors, fmt.Sprintf("Error copying or encoding video: %s", err))

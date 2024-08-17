@@ -32,6 +32,7 @@ type LogEntry struct {
 	DateSrc                  DateSrc
 	DateSrcExifTagName       string
 	DateSrcImgTitleSearchStr string
+	UsedDateTag              types.ExifDateTag
 	AllExifTags              types.ExifTags
 	SupplExifTags            types.ExifTags
 	VidInfo                  types.VidInfo

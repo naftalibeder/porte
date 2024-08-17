@@ -15,38 +15,30 @@ import (
 	"golang.org/x/exp/slices"
 )
 
-func CopyOrEncodeVideo(fileInfo types.FileInfo, srcPath string, tmpDir string, fileNameNoExt string) (destPath string, err error) {
+func CopyVideo(fileInfo types.FileInfo, srcPath string, tmpDir string, fileNameNoExt string) (destPath string, err error) {
 	if fileInfo.MediaKind != types.Video {
 		return "", errors.New("file is not a video")
 	}
 
-	// Copy or encode video and audio with ffmpeg.
+	// Repackage the video and audio in an mp4 container if possible, or just
+	// duplicate the file.
 
-	vidInfo := fileInfo.VidInfo
-	cmdArgs := []string{
-		"-i", srcPath,
-		"-f", "mp4",
-	}
-
-	if !vidInfo.NeedsReEncode {
-		cmdArgs = append(cmdArgs,
+	var cmd *exec.Cmd
+	if fileInfo.VidInfo.CanBeRePackagedInMP4 {
+		destPath = filepath.Join(tmpDir, fileNameNoExt) + ".mp4"
+		cmdArgs := []string{
+			"-i", srcPath,
+			"-f", "mp4",
 			"-c:v", "copy",
 			"-c:a", "copy",
-		)
+			destPath,
+		}
+		cmd = exec.Command(lib.FfmpegBin, cmdArgs...)
 	} else {
-		cmdArgs = append(cmdArgs,
-			"-c:v", "libx264",
-			"-pix_fmt", "yuv420p",
-			"-c:a", "aac",
-			"-b:a", "128k",
-			"-preset", "slow",
-			"-crf", "17",
-		)
+		ext := filepath.Ext(fileInfo.Name)
+		destPath = filepath.Join(tmpDir, fileNameNoExt) + ext
+		cmd = exec.Command("cp", srcPath, destPath)
 	}
-
-	destPath = filepath.Join(tmpDir, fileNameNoExt) + ".mp4"
-	cmdArgs = append(cmdArgs, destPath)
-	cmd := exec.Command((lib.FfmpegBin), cmdArgs...)
 
 	out, err := cmd.CombinedOutput()
 	if err != nil {
@@ -106,10 +98,12 @@ func GetVidInfo(srcPath string) (vidInfo types.VidInfo, err error) {
 		vidInfo.AudCodec,
 	)
 
-	// Determine if file can simply be repackaged.
+	// Determine if file can simply be repackaged. (If not, putting it into an
+	// mp4 container would require re-encoding, which is less desirable than
+	// preserving the file as-is.)
 
-	if !vidInfo.IsVidCompat || !vidInfo.IsAudCompat {
-		vidInfo.NeedsReEncode = true
+	if vidInfo.IsVidCompat && vidInfo.IsAudCompat {
+		vidInfo.CanBeRePackagedInMP4 = true
 	}
 
 	// Get video duration.

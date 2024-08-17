@@ -21,7 +21,7 @@ Detaku uses each file's original metadata, any related metadata file, and the fi
   - Copies geolocation data, if needed, from any related metadata file.
 - File quality
   - Edits image exif data without recompressing files.
-  - Edits video exif data and attempts to repackage as `.mp4` without re-encoding.
+  - Edits video exif data and attempts to repackage as `.mp4` without re-encoding, for compatibility. Otherwise, simply renames and copies the file.
   - Fixes incorrect extensions based on the actual file data.
   - Preserves original filename in the output filename and exif title tag.
   - Copies files to an output directory, instead of modifying in-place.

@@ -42,12 +42,12 @@ type ExifDateTag struct {
 }
 
 type VidInfo struct {
-	VidCodec      string
-	IsVidCompat   bool
-	AudCodec      string
-	IsAudCompat   bool
-	NeedsReEncode bool
-	DurationSec   float64
+	VidCodec             string
+	IsVidCompat          bool
+	AudCodec             string
+	IsAudCompat          bool
+	CanBeRePackagedInMP4 bool
+	DurationSec          float64
 }
 
 // Results.
