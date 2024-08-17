@@ -104,26 +104,36 @@ func GetDateFromStr(s string) (date time.Time, err error) {
 }
 
 // Returns a comma-separated list from the provided map, ordered by each
-// entry's int value.
+// entry's value.
 func SortedListFromCt(m map[string]int) string {
-	items := []types.SortableItem{}
+	type Item struct {
+		Key   string
+		CtVal int
+	}
 
-	for val, ct := range m {
-		items = append(items, types.SortableItem{
-			Value: val,
-			Count: ct,
+	items := []Item{}
+
+	for k, ctVal := range m {
+		items = append(items, Item{
+			Key:   k,
+			CtVal: ctVal,
 		})
 	}
+
 	sort.SliceStable(items, func(i, j int) bool {
-		return items[i].Count > items[j].Count
+		prev := items[i]
+		next := items[j]
+		if prev.CtVal == next.CtVal {
+			return prev.Key > next.Key
+		} else {
+			return prev.CtVal > next.CtVal
+		}
 	})
 
-	disp := ""
-	for i, item := range items {
-		if i > 0 {
-			disp += ", "
-		}
-		disp += fmt.Sprintf("%s %d", item.Value, item.Count)
+	pairs := []string{}
+	for _, item := range items {
+		pairs = append(pairs, fmt.Sprintf("%s %d", item.Key, item.CtVal))
 	}
-	return disp
+
+	return strings.Join(pairs, ", ")
 }

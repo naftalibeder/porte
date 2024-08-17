@@ -69,11 +69,6 @@ type VidCodecCtMap map[string]int
 // Map of audio codec to occurrence count.
 type AudCodecCtMap map[string]int
 
-type SortableItem struct {
-	Value string
-	Count int
-}
-
 type ExtCount struct {
 	Ext   string
 	Count int
