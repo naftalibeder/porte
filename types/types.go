@@ -62,14 +62,3 @@ const (
 
 // Map of file extension to occurrence count.
 type ExtCtMap map[string]int
-
-// Map of video codec to occurrence count.
-type VidCodecCtMap map[string]int
-
-// Map of audio codec to occurrence count.
-type AudCodecCtMap map[string]int
-
-type ExtCount struct {
-	Ext   string
-	Count int
-}
