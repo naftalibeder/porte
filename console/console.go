@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/signal"
 	"strings"
 	"testing"
 	"time"
@@ -23,7 +24,9 @@ const (
 )
 
 const (
-	headerColWd = 5
+	headerColWd    = 5
+	hideCursorCode = "\033[?25l"
+	showCursorCode = "\033[?25h"
 )
 
 var (
@@ -38,8 +41,19 @@ func Start() {
 		return
 	}
 
+	fmt.Print(hideCursorCode)
+
 	termFD = int(os.Stdin.Fd())
 	output = map[int][][]string{}
+
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+	go func() {
+		for range c {
+			fmt.Print(showCursorCode)
+			os.Exit(1)
+		}
+	}()
 }
 
 func Update(phase int, entry [][]string) {
@@ -136,13 +150,12 @@ func write(rows [][]string, retreat bool) {
 	}
 	addRowDivider()
 
-	// Print and clean up.
+	if retreat {
+		fmt.Fprintf(writer, "\033[%dA", lineCt)
+	}
 
 	writer.Flush()
 
-	if retreat {
-		fmt.Printf("\033[%dA", lineCt)
-	}
 }
 
 func GetElapsedStr(start time.Time) string {
