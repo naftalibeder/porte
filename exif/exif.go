@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"strconv"
+	"strings"
 	"time"
 
 	"detaku/lib"
@@ -108,9 +109,28 @@ func GetAllExifTags(srcPath string) (tags types.ExifTags, err error) {
 		if err != nil {
 			continue
 		}
+
 		if d.Unix() == 0 {
 			continue
 		}
+
+		// Avoid using tags that describe system activity, like
+		// FileModificationDateTime.
+		if strings.Contains(n, "File") {
+			continue
+		}
+
+		// Avoid using tags that are just standalone times without a date component.
+		if !strings.Contains(n, "Date") {
+			continue
+		}
+
+		// Avoid using tags that describe dates unrelated to when the file was
+		// captured, like the creation date of the color profile.
+		if n == "ProfileDateTime" {
+			continue
+		}
+
 		tags.Dates[n] = types.ExifDateTag{
 			Name: n,
 			Date: d,

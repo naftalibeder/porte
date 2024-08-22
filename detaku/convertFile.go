@@ -98,11 +98,7 @@ func convertFile(job ConvertFileJob) (result ConvertFileResult) {
 	foundDate := false
 	dateTags := []types.ExifDateTag{}
 	for _, t := range exifTags.Dates {
-		// Avoid using exif date tags that describe system activity, like
-		// FileModificationDateTime.
-		if !strings.Contains(t.Name, "File") {
-			dateTags = append(dateTags, t)
-		}
+		dateTags = append(dateTags, t)
 	}
 	for _, t := range supplExifTags.Dates {
 		dateTags = append(dateTags, t)
