@@ -29,7 +29,7 @@ const (
 )
 
 // Finds an available path in destDir, trying incrementing suffixes if needed.
-func GetValidPath(destDir string, destFileName string) (destPath string) {
+func GetAvailableDestPath(destDir string, destFileName string) (destPath string) {
 	base := filepath.Base(destFileName)
 	ext := filepath.Ext(destFileName)
 	name := strings.TrimSuffix(base, ext)
@@ -79,6 +79,7 @@ func GetDateFromStr(s string) (date time.Time, err error) {
 		}
 	}()
 
+	// Drop a file extension, if one exists.
 	ext := filepath.Ext(s)
 	s = strings.TrimSuffix(s, ext)
 

@@ -236,12 +236,12 @@ func convertFile(job ConvertFileJob) (result ConvertFileResult) {
 	if canSaveFile {
 		copyFromPath = tmpPath
 		destFileName := earliestDateTag.Date.Format(utils.FileNameFmt) + utils.FileNamePartSep + srcName + filepath.Ext(tmpPath)
-		copyToPath = utils.GetValidPath(subDirs.Success, destFileName)
+		copyToPath = utils.GetAvailableDestPath(subDirs.Success, destFileName)
 		outcome = types.OutcomeSuccess
 	} else {
 		copyFromPath = srcPath
 		destFileName := srcNameExt
-		copyToPath = utils.GetValidPath(subDirs.Fail, destFileName)
+		copyToPath = utils.GetAvailableDestPath(subDirs.Fail, destFileName)
 		outcome = types.OutcomeFail
 	}
 

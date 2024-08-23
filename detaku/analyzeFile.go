@@ -19,12 +19,15 @@ func runAnalyzeFileJob(jobs <-chan AnalyzeFileJob, results chan<- AnalyzeFileRes
 func analyzeFile(job AnalyzeFileJob) (result AnalyzeFileResult) {
 	path := job.Path
 
-	name := filepath.Base(path)
+	nameOrig := filepath.Base(path)
+	extOrig := strings.ToLower(filepath.Ext(path))
+
+	ext := strings.ToLower(extOrig)
+	name := strings.TrimSuffix(nameOrig, extOrig) + ext
 
 	var mediaKind types.MediaKind = types.Unknown
 	var mediaFileInfo types.FileInfo
 	var supplFileInfo types.FileInfo
-	var ext string
 
 	mimeType, _ := exif.GetExifMimeType(path)
 	if strings.HasPrefix(mimeType, "image") {
@@ -33,7 +36,6 @@ func analyzeFile(job AnalyzeFileJob) (result AnalyzeFileResult) {
 		mediaKind = types.Video
 	}
 
-	ext = strings.ToLower(filepath.Ext(name))
 	if mediaKind == types.Image {
 		mediaFileInfo = types.FileInfo{
 			Path:      path,
