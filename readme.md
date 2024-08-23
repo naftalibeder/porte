@@ -1,4 +1,4 @@
-# porte
+# Porte
 
 A tool for fixing and organizing a Google Takeout photos export.
 
