@@ -1,4 +1,4 @@
-package detaku
+package porte
 
 import (
 	"embed"
@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"detaku/exif"
-	"detaku/utils"
+	"porte/exif"
+	"porte/utils"
 
 	"gopkg.in/yaml.v3"
 )
@@ -57,7 +57,7 @@ func TestRun(t *testing.T) {
 	for _, fixtureEntry := range fixtureEntries {
 		inDir := filepath.Join("fixtures", fixtureEntry.Name())
 
-		outDirRoot := filepath.Join(globalCacheDir, "detaku", "tests", fixtureEntry.Name())
+		outDirRoot := filepath.Join(globalCacheDir, "porte", "tests", fixtureEntry.Name())
 		_ = os.RemoveAll(outDirRoot)
 		err := os.MkdirAll(outDirRoot, 0777)
 		if err != nil {

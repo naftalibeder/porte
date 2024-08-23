@@ -1,12 +1,12 @@
-package detaku
+package porte
 
 import (
 	"path/filepath"
 	"strings"
 
-	"detaku/encode"
-	"detaku/exif"
-	"detaku/types"
+	"porte/encode"
+	"porte/exif"
+	"porte/types"
 )
 
 func runAnalyzeFileJob(jobs <-chan AnalyzeFileJob, results chan<- AnalyzeFileResult) {

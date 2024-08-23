@@ -1,4 +1,4 @@
-module detaku
+module porte
 
 go 1.19
 

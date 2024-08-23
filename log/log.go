@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"time"
 
-	"detaku/types"
+	"porte/types"
 )
 
 type LogOutput struct {

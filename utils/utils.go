@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"detaku/types"
+	"porte/types"
 
 	"github.com/markusmobius/go-dateparser"
 )

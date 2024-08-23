@@ -1,4 +1,4 @@
-# Detaku
+# porte
 
 A tool for fixing and organizing a Google Takeout photos export.
 
@@ -6,7 +6,7 @@ A tool for fixing and organizing a Google Takeout photos export.
 
 When Google Photos generates a backup of a photo library, the resulting photo files are frequently missing important exif data, like timestamps and geolocation. This metadata is placed into adjacent `.json` files.
 
-Detaku uses each file's original metadata, any related metadata file, and the filename itself to output a directory of fixed files containing the most accurate information available.
+porte uses each file's original metadata, any related metadata file, and the filename itself to output a directory of fixed files containing the most accurate information available.
 
 <img width="100%" src="https://github.com/user-attachments/assets/1eda5914-236a-4902-9e24-6e1f5f613a97">
 
@@ -40,7 +40,7 @@ Detaku uses each file's original metadata, any related metadata file, and the fi
 
 ## Etymology
 
-_Detaku_ is a neological portmantic backronym of _de_ (from _de_) and _taku_ (from _takeout_). It also seems to mean something in Japanese?
+_Porte_ comes from the French word _emporte_, meaning _takeout_, in the food sense.
 
 ## Installation
 
@@ -48,7 +48,7 @@ You can either use a prebuilt binary or build from source.
 
 #### Prebuilt binary
 
-Go to the [Releases](https://github.com/naftalibeder/detaku/releases) page and download a binary for the most recent version.
+Go to the [Releases](https://github.com/naftalibeder/porte/releases) page and download a binary for the most recent version.
 
 To run the program on macOS, you need to make it executable:
 
@@ -67,7 +67,7 @@ To build from source, first install these dependencies:
 Then, build the project:
 
 ```sh
-go build -o ./detaku
+go build -o ./porte
 ```
 
 ## Usage
@@ -75,7 +75,7 @@ go build -o ./detaku
 To convert your photos, run:
 
 ```sh
-detaku srcpath destpath
+porte srcpath destpath
 ```
 
 where `srcpath` is any directory containing images or videos, and `destpath` is the desired output directory.

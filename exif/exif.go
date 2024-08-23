@@ -10,9 +10,9 @@ import (
 	"strings"
 	"time"
 
-	"detaku/lib"
-	"detaku/types"
-	"detaku/utils"
+	"porte/lib"
+	"porte/types"
+	"porte/utils"
 )
 
 type googleInfo struct {

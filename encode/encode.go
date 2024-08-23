@@ -9,8 +9,8 @@ import (
 	"strconv"
 	"strings"
 
-	"detaku/lib"
-	"detaku/types"
+	"porte/lib"
+	"porte/types"
 
 	"golang.org/x/exp/slices"
 )

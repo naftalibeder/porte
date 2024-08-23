@@ -1,4 +1,4 @@
-package detaku
+package porte
 
 import (
 	"fmt"
@@ -8,11 +8,11 @@ import (
 	"strings"
 	"time"
 
-	"detaku/encode"
-	"detaku/exif"
-	"detaku/log"
-	"detaku/types"
-	"detaku/utils"
+	"porte/encode"
+	"porte/exif"
+	"porte/log"
+	"porte/types"
+	"porte/utils"
 )
 
 func runConvertFileJob(jobs <-chan ConvertFileJob, results chan<- ConvertFileResult) {

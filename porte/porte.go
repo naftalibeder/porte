@@ -1,11 +1,11 @@
-package detaku
+package porte
 
 import (
 	"time"
 
-	"detaku/console"
-	"detaku/lib"
-	"detaku/log"
+	"porte/console"
+	"porte/lib"
+	"porte/log"
 )
 
 func Run(srcDir string, destDir string) error {

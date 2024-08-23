@@ -1,4 +1,4 @@
-package detaku
+package porte
 
 import (
 	"fmt"
@@ -9,9 +9,9 @@ import (
 	"strings"
 	"time"
 
-	"detaku/console"
-	"detaku/types"
-	"detaku/utils"
+	"porte/console"
+	"porte/types"
+	"porte/utils"
 )
 
 type AnalyzeDirResult struct {

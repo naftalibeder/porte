@@ -5,7 +5,7 @@ import (
 	"os"
 	"path/filepath"
 
-	"detaku/detaku"
+	"porte/porte"
 )
 
 func main() {
@@ -15,7 +15,7 @@ func main() {
 		return
 	}
 
-	err = detaku.Run(srcDir, destDir)
+	err = porte.Run(srcDir, destDir)
 	if err != nil {
 		fmt.Printf("Error converting directory: %s\n", err)
 		return

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"detaku/types"
+	"porte/types"
 )
 
 func TestGetSupplementaryFilePath(t *testing.T) {

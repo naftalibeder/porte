@@ -1,4 +1,4 @@
-package detaku
+package porte
 
 import (
 	"fmt"
@@ -6,9 +6,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"detaku/console"
-	"detaku/log"
-	"detaku/types"
+	"porte/console"
+	"porte/log"
+	"porte/types"
 )
 
 type ConvertFileJob struct {

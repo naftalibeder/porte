@@ -25,7 +25,7 @@ func GetLibs() (out string, err error) {
 		return "", err
 	}
 
-	libCacheDir = filepath.Join(globalCacheDir, "detaku", "lib")
+	libCacheDir = filepath.Join(globalCacheDir, "porte", "lib")
 	_ = os.MkdirAll(libCacheDir, 0777)
 
 	ExiftoolDir := filepath.Join(libCacheDir, "exiftool")
