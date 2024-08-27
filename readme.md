@@ -6,7 +6,7 @@ A tool for fixing and organizing a Google Takeout photos export.
 
 When Google Photos generates a backup of a photo library, the resulting photo files are frequently missing important exif data, like timestamps and geolocation. This metadata is placed into adjacent `.json` files.
 
-porte uses each file's original metadata, any related metadata file, and the filename itself to output a directory of fixed files containing the most accurate information available.
+Porte uses each file's original metadata, any related metadata file, and the filename itself to output a directory of fixed files containing the most accurate information available.
 
 <img width="100%" src="https://github.com/user-attachments/assets/1eda5914-236a-4902-9e24-6e1f5f613a97">
 
